@@ -27,7 +27,7 @@ public:
     LinkedList();
     ~LinkedList();
     void add(const Type&);
-    void remove();
+    Type remove();
     bool is_empty();
     friend class Node<Type>;
     friend ostream& operator<<(ostream &os, LinkedList& ll){
