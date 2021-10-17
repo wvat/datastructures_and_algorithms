@@ -62,6 +62,7 @@ public:
     Type remove();
 private:
     LinkedList<Type>* list;
+    Node<Type>* current_node;
 };
 
 #endif

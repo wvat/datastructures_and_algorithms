@@ -52,14 +52,36 @@ bool LinkedList<Type>::is_empty(){
 
 template <class Type>
 Iterator<Type>::Iterator(LinkedList<Type>& ll): list(ll){
-
+    current_node = ll->front;
 }
 
 template <class Type>
-Iterator<Type>::~Iterator(){}
+Iterator<Type>::~Iterator(){
+    delete list;
+}
 
 template <class Type>
-void Iterator<Type>::insert(const Type& val){}
+void Iterator<Type>::insert(const Type& val){
+    // if inserting at the end need to update back
+    Node<Type>* nn = new Node<Type>(val);
+
+    // update front and back as necessary
+    if(list->is_empty()){
+        list->front = list->back = nn;
+    }
+
+    else if(list->back == current_node){
+        list->back = nn;
+    }
+
+    nn->next = current_node->next;
+    nn->prev = current_node;
+    current_node->next->prev = nn;
+    current_node->next = nn;
+
+    // advance the iterator to now point at the newly inserted node
+    current_node = nn;
+}
 
 template <class Type>
 Type Iterator<Type>::remove(){}
