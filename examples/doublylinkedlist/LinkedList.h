@@ -3,7 +3,7 @@
 
 // forward declaration
 template <class Type>
-class LinkedList<Type>;
+class LinkedList;
 
 template <class Type>
 class Node{
@@ -22,7 +22,7 @@ private:
 };
 
 template <class Type>
-class LinkedList<Type>{
+class LinkedList{
 public:
     LinkedList();
     ~LinkedList();
@@ -31,7 +31,11 @@ public:
     bool is_empty();
     friend class Node<Type>;
     friend ostream& operator<<(ostream &os, LinkedList& ll){
-        os << "placeholder" << endl;
+        Node<Type>* ptr = 0;
+        os << "Linked list contents:\n";
+        for(ptr=ll.front; ptr; ptr=ptr->next)
+            os << ptr->item << " ";
+        os << endl;
         return os;
     }
 private:
@@ -40,10 +44,16 @@ private:
 };
 
 template <class Type>
-class Iterator<Type>{
+class Iterator{
 public:
     friend class LinkedList<Type>;
     friend class Node<Type>;
+
+    // operator overloads
+    // ++ and --
+    // dereference
+    // assignment
+    // comparison
 };
 
 #endif
