@@ -49,11 +49,19 @@ public:
     friend class LinkedList<Type>;
     friend class Node<Type>;
 
+    Iterator(LinkedList<Type>&);
+    ~Iterator();
+
     // operator overloads
     // ++ and --
     // dereference
     // assignment
     // comparison
+
+    void insert(const Type&);
+    Type remove();
+private:
+    LinkedList<Type>* list;
 };
 
 #endif

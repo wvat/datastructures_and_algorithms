@@ -49,3 +49,17 @@ template <class Type>
 bool LinkedList<Type>::is_empty(){
     return front == 0;
 }
+
+template <class Type>
+Iterator<Type>::Iterator(LinkedList<Type>& ll): list(ll){
+
+}
+
+template <class Type>
+Iterator<Type>::~Iterator(){}
+
+template <class Type>
+void Iterator<Type>::insert(const Type& val){}
+
+template <class Type>
+Type Iterator<Type>::remove(){}
