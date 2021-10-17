@@ -84,4 +84,35 @@ void Iterator<Type>::insert(const Type& val){
 }
 
 template <class Type>
-Type Iterator<Type>::remove(){}
+Type Iterator<Type>::remove(){
+    if(list->is_empty()){
+        cerr << "Error: can't remove node from an empty list.\n";
+        exit(-1);
+    }
+    else{
+        Node<Type>* ptr = current_node;
+        Type val = current_node->item;
+
+        if(current_node->prev){
+            current_node->prev->next = current_node->next;
+            current_node = ptr->prev;
+        }
+        else{
+            list->front = current_node->next; 
+            current_node = list->front;
+        }
+
+        if(current_node->next){
+            current_node->next->prev = current_node->prev;
+            current_node = ptr->next;
+        }
+        else{
+            list->back = current_node->prev;
+            current_node = list->back;
+        }
+        
+        delete ptr;
+        
+        return val;
+    }
+}
