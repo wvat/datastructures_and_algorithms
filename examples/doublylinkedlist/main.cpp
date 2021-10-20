@@ -16,5 +16,17 @@ int main(){
         cout << *i << endl;
     }
 
+    // quick insertion test
+    LinkedList<int>::Iterator i = ll->get_front();
+    i++;
+    i.insert(5);
+
+    cout << *ll << endl;
+    i++;
+    cout << "test" << endl;
+    cout << *i << endl;
+    i.insert(6);
+    
+    cout << *ll << endl;
     
 }

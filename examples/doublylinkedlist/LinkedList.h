@@ -106,29 +106,22 @@ public:
             return current_node == i.current_node;
         }
 
-        /*void insert(const Type& val){
+        void insert(const Type& val){
             // if inserting at the end need to update back
-            Node<Type>* nn = new Node<Type>(val);
+            Node<Type>* n = new Node<Type>(val);
 
-            // update front and back as necessary
-            if(list->is_empty()){
-                list->front = list->back = nn;
-            }
-
-            else if(list->back == current_node){
-                list->back = nn;
-            }
-
-            nn->next = current_node->next;
-            nn->prev = current_node;
-            current_node->next->prev = nn;
-            current_node->next = nn;
+            // revise links
+            n->next = current_node->next;
+            n->prev = current_node;
+            if(current_node->next != nullptr)
+                current_node->next->prev = n;
+            current_node->next = n;
 
             // advance the iterator to now point at the newly inserted node
-            current_node = nn;
+            current_node = n;
         }
 
-        Type remove(){
+        /*Type remove(){
             if(list->is_empty()){
                 cerr << "Error: can't remove node from an empty list.\n";
                 exit(-1);
