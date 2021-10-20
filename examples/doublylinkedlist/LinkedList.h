@@ -96,8 +96,14 @@ public:
             return current_node->item;
         }
 
+        // Inequality operator
         bool operator!=(const Iterator& i){
             return current_node != i.current_node;
+        }
+
+        // Equality operator
+        bool operator==(const Iterator& i){
+            return current_node == i.current_node;
         }
 
         /*void insert(const Type& val){
