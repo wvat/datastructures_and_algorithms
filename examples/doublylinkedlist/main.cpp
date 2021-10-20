@@ -11,5 +11,10 @@ int main(){
 
     cout << *ll << endl;
     //Iterator<int>* i = new Iterator<int>(ll);
+
+    for(LinkedList<int>::Iterator i = ll->get_front(); i != ll->get_end(); i++){
+        cout << *i << endl;
+    }
+
     
 }

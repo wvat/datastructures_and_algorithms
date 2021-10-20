@@ -40,10 +40,23 @@ public:
     Type remove();
     bool is_empty();
 
+    class Iterator;
+    Iterator get_front()
+    {
+        return Iterator();
+    }
+
+    Iterator get_end()
+    {
+        return Iterator(nullptr);
+    }
+
     class Iterator{
     public:
         Iterator() : current_node(front) {}
-        Iterator(const Node<Type>* node) : current_node(node) {}
+        Iterator(Node<Type>* node){
+            current_node = node;
+        }
 
         // Prefix increment
         Iterator& operator++()
@@ -75,6 +88,16 @@ public:
             Iterator temp = *this;
             --*this;
             return temp;
+        }
+
+        // Dereference operator
+        Type operator*()
+        {
+            return current_node->item;
+        }
+
+        bool operator!=(const Iterator& i){
+            return current_node != i.current_node;
         }
 
         /*void insert(const Type& val){
