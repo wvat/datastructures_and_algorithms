@@ -51,8 +51,9 @@ bool LinkedList<Type>::is_empty(){
 }
 
 template <class Type>
-Iterator<Type>::Iterator(LinkedList<Type>& ll): list(ll){
-    current_node = ll->front;
+Iterator<Type>::Iterator(const LinkedList<Type> &ll){
+    list = ll;
+    current_node = list->front;
 }
 
 template <class Type>
@@ -116,3 +117,41 @@ Type Iterator<Type>::remove(){
         return val;
     }
 }
+
+// Prefix increment
+template<class Type>
+Iterator<Type>& Iterator<Type>::operator++()
+{
+    current_node = current_node->next;
+    return *this;
+}
+
+// Prefix decrement 
+template<class Type>
+Iterator<Type>& Iterator<Type>::operator--()
+{
+    current_node = current_node->prev;
+    return *this;
+}
+
+// Postfix increment
+template<class Type>
+Iterator<Type> Iterator<Type>::operator++(int i)
+{
+    // TODO use i for variable sized increments
+    Iterator<Type> temp = *this;
+    ++*this;
+    return temp;
+}
+
+// Postfix increment
+template<class Type>
+Iterator<Type> Iterator<Type>::operator--(int i)
+{
+    // TODO use i for variable sized increments
+    Iterator<Type> temp = *this;
+    --*this;
+    return temp;
+}
+
+

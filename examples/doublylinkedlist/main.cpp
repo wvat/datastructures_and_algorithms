@@ -10,4 +10,6 @@ int main(){
     ll->add(3);
 
     cout << *ll << endl;
+    //Iterator<int>* i = new Iterator<int>(ll);
+    
 }

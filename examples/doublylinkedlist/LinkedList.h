@@ -6,16 +6,18 @@ template <class Type>
 class LinkedList;
 
 template <class Type>
+class Iterator;
+
+template <class Type>
 class Node{
-public:
-    Node(const Type&);
-    Type item;
     friend class LinkedList<Type>;
     friend ostream& operator<<(ostream &os, Node& n){
         os << n->item;
         return os;
     }
-
+public:
+    Node(const Type&);
+    Type item;
 private:
     Node* next;
     Node* prev;
@@ -23,13 +25,8 @@ private:
 
 template <class Type>
 class LinkedList{
-public:
-    LinkedList();
-    ~LinkedList();
-    void add(const Type&);
-    Type remove();
-    bool is_empty();
     friend class Node<Type>;
+    friend class Iterator<Type>;
     friend ostream& operator<<(ostream &os, LinkedList& ll){
         Node<Type>* ptr = 0;
         os << "Linked list contents:\n";
@@ -38,6 +35,12 @@ public:
         os << endl;
         return os;
     }
+public:
+    LinkedList();
+    ~LinkedList();
+    void add(const Type&);
+    Type remove();
+    bool is_empty();
 private:
     Node<Type>* front;
     Node<Type>* back;
@@ -45,15 +48,22 @@ private:
 
 template <class Type>
 class Iterator{
-public:
     friend class LinkedList<Type>;
     friend class Node<Type>;
-
-    Iterator(LinkedList<Type>&);
+public:
+    Iterator(const LinkedList<Type>&);
     ~Iterator();
 
     // operator overloads
     // ++ and --
+    // Prefix operator
+    Iterator<Type>& operator++();
+    Iterator<Type>& operator--();
+
+    // Postfix operator
+    Iterator<Type> operator++(int);
+    Iterator<Type> operator--(int);
+    
     // dereference
     // assignment
     // comparison
