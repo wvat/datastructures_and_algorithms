@@ -81,7 +81,7 @@ public:
             return temp;
         }
 
-        // Postfix increment
+        // Postfix decrement
         Iterator operator--(int i)
         {
             // TODO use i for variable sized increments
@@ -106,65 +106,8 @@ public:
             return current_node == i.current_node;
         }
 
-        void insert(const Type& val){
-            // if inserting at the end need to update back
-            Node<Type>* n = new Node<Type>(val);
-
-            // list is empty
-            if(current_node == nullptr){
-                front = current_node;
-            }
-
-            // revise links
-            n->next = current_node->next;
-            n->prev = current_node;
-            if(current_node->next != nullptr)
-                current_node->next->prev = n;
-            else
-                back = n;
-            current_node->next = n;
-
-            // advance the iterator to now point at the newly inserted node
-            current_node = n;
-        }
-
-        Type remove(){
-            if(current_node == nullptr){
-                cerr << "Error: can't remove node from an empty list.\n";
-                exit(-1);
-            }
-            else{
-                Node<Type>* ptr = current_node;
-                Type val = current_node->item;
-
-                // not deleting the first node so shift current node
-                // to the left
-                if(ptr->prev != nullptr){
-                    current_node = ptr->prev;
-                    current_node->next = ptr->next;
-                    cout << "got here" << endl;
-                }
-
-                // TODO update back
-                // deleting the first node 
-                else{
-                    // shift RIGHT
-                    cout << "this here" << endl;
-
-                    // deleting from the front but there are stil other nodes
-                    if(ptr->next != nullptr){
-                        current_node = ptr->next;
-                        current_node->prev = nullptr;
-                    }
-                    else
-                        current_node = nullptr;
-
-                    front = current_node;
-                }
-                delete ptr;
-                return val;
-            }
-        }
+        void insert(const Type&);
+        Type remove();
 
     private:
         Node<Type>* current_node;
