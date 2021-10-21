@@ -28,5 +28,12 @@ int main(){
     i.insert(6);
     
     cout << *ll << endl;
+    cout << i.remove() << endl;
+
+    cout << *ll << endl;
+
+    while(!ll->is_empty()){
+        cout << i.remove() << endl;
+    }
     
 }

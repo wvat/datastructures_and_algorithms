@@ -4,6 +4,9 @@ template <class Type>
 Node<Type>* LinkedList<Type>::front = 0;
 
 template <class Type>
+Node<Type>* LinkedList<Type>::back = 0;
+
+template <class Type>
 Node<Type>::Node(const Type& val): item(val){
     next = prev = 0;
 }
