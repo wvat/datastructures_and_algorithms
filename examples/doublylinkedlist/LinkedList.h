@@ -8,7 +8,7 @@ class LinkedList;
 template <class Type>
 class Node{
     friend class LinkedList<Type>;
-    friend ostream& operator<<(ostream &os, Node& n){
+    friend std::ostream& operator<<(std::ostream &os, Node& n){
         os << n->item;
         return os;
     }
@@ -23,12 +23,12 @@ private:
 template <class Type>
 class LinkedList{
     friend class Node<Type>;
-    friend ostream& operator<<(ostream &os, LinkedList& ll){
+    friend std::ostream& operator<<(std::ostream &os, LinkedList& ll){
         Node<Type>* ptr = 0;
         os << "Linked list contents:\n";
         for(ptr=ll.front; ptr; ptr=ptr->next)
             os << ptr->item << " ";
-        os << endl;
+        os << std::endl;
         return os;
     }
 public:

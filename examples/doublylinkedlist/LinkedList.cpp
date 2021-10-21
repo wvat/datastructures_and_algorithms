@@ -35,7 +35,7 @@ void LinkedList<Type>::add(const Type& val){
 template <class Type>
 Type LinkedList<Type>::remove(){
     if(is_empty())
-        cerr << "Error: tried to remove a node from an empty list.";
+        std::cerr << "Error: tried to remove a node from an empty list.";
         exit(-1);
 
     Node<Type>* ptr = front;
@@ -78,7 +78,7 @@ void LinkedList<Type>::Iterator::insert(const Type& val){
 template <class Type>
 Type LinkedList<Type>::Iterator::remove(){
     if(current_node == nullptr){
-        cerr << "Error: can't remove node from an empty list.\n";
+        std::cerr << "Error: can't remove node from an empty list.\n";
         exit(-1);
     }
     else{
