@@ -99,10 +99,17 @@ Type LinkedList<Type>::Iterator::remove(){
             // deleting from the front but there are stil other nodes
             if(ptr->next != nullptr){
                 current_node = ptr->next;
+
+                // last node
+                if(current_node->next == nullptr)
+                    back = current_node;
+
                 current_node->prev = nullptr;
             }
-            else
+            else{
                 current_node = nullptr;
+                back = current_node;
+            }
 
             front = current_node;
         }
